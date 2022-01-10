@@ -4,4 +4,5 @@ public interface IBookingTicket {
     int bookingGeneralTicket(BookingTicket bookingTicket);
 
     int bookingTicketPackage(BookingTicketPackage bookingTicketPackage);
+
 }

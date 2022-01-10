@@ -2,8 +2,9 @@
  * 模擬寫入資料庫
  */
 
-public class SqlCustomer implements IBookingTicket {
+public class GeneralTicket implements IBookingTicket {
 
+    //確認有沒有剩餘票
     @Override
     public int checkTicket(int date, String name) {
         int tiecketQuantity = 0;
@@ -12,6 +13,8 @@ public class SqlCustomer implements IBookingTicket {
         return tiecketQuantity;
     }
 
+   
+    //單一訂票
     @Override
     public int bookingGeneralTicket(BookingTicket bookingTicket) {
         System.out.println("訂票電影名稱：" + bookingTicket.getName() + bookingTicket.getSession() + bookingTicket.getDate()
@@ -20,6 +23,7 @@ public class SqlCustomer implements IBookingTicket {
                 + bookingTicket.getQuantity().get(2) * 300 + bookingTicket.getQuantity().get(3) * 160;
     }
 
+    //訂套票
     @Override
     public int bookingTicketPackage(BookingTicketPackage bookingTicketPackage) {
 

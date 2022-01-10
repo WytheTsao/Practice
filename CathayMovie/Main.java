@@ -4,7 +4,7 @@ import java.util.ArrayList;
  */
 public class Main {
     public static void main(String[] args) {
-        IBookingTicket counterStaff = new SqlCustomer();
+        IBookingTicket counterStaff = new GeneralTicket();
         // 查詢剩餘票數
         System.out.println("剩餘票數: " + counterStaff.checkTicket(20220110, "name"));
         // 訂票
