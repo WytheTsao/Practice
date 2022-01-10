@@ -1,9 +1,24 @@
+import java.util.ArrayList;
+
 public class Main {
     public static void main(String[] args) {
-        ICounterStaff counterStaff = new SqlCustomer();
-        
+        IBookingTicket counterStaff = new SqlCustomer();
+        // 查詢剩餘票數
         System.out.println("剩餘票數: " + counterStaff.checkTicket(20220110, "name"));
-        counterStaff.booking(new CounterStaff(20220110, "蜘蛛人", "影廳A", 2));
-        
+        // 訂票
+        ArrayList<Integer> ticketList = new ArrayList<>();
+        ticketList.add(1);
+        ticketList.add(1);
+        ticketList.add(1);
+        ticketList.add(1);
+
+        // 單一訂票
+        System.out.println(
+                "價格" + counterStaff.bookingGeneralTicket(new BookingTicket(20220110, "蜘蛛人", "影廳A", ticketList)));
+
+        // 套票
+        System.out.println("價格"
+                + counterStaff.bookingTicketPackage(new BookingTicketPackage(20220110, "蜘蛛人", "影廳A", ticketList, 1)));
+
     }
 }
