@@ -1,5 +1,7 @@
 import java.util.ArrayList;
-
+/**
+ * 20220122新人訓
+ */
 public class Main {
     public static void main(String[] args) {
         IBookingTicket counterStaff = new SqlCustomer();
@@ -14,10 +16,10 @@ public class Main {
 
         // 單一訂票
         System.out.println(
-                "價格" + counterStaff.bookingGeneralTicket(new BookingTicket(20220110, "蜘蛛人", "影廳A", ticketList)));
+                "總價格: " + counterStaff.bookingGeneralTicket(new BookingTicket(20220110, "蜘蛛人", "影廳A", ticketList)));
 
         // 套票
-        System.out.println("價格"
+        System.out.println("總價格: "
                 + counterStaff.bookingTicketPackage(new BookingTicketPackage(20220110, "蜘蛛人", "影廳A", ticketList, 1)));
 
     }
