@@ -3,6 +3,6 @@ public interface IBookingTicket {
 
     int bookingGeneralTicket(BookingTicket bookingTicket);
 
-    int bookingTicketPackage(BookingTicketPackage bookingTicketPackage);
+    int bookingTicketPackage(BookingTicket bookingTicket);
 
 }
