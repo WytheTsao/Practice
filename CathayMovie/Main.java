@@ -1,26 +1,33 @@
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 /**
  * 20220122新人訓
  */
 public class Main {
     public static void main(String[] args) {
         IBookingTicket counterStaff = new GeneralTicket();
-        // 查詢剩餘票數
-        System.out.println("剩餘票數: " + counterStaff.checkTicket(20220110, "name"));
-        // 訂票
-        ArrayList<Integer> ticketList = new ArrayList<>();
-        ticketList.add(1);
-        ticketList.add(1);
-        ticketList.add(1);
-        ticketList.add(1);
+    
+        HashMap<String,Integer> seat = new HashMap<>();
+        seat.put("影廳A", 218);
+        seat.put("影廳B", 220);
+        seat.put("影廳C", 230);
 
-        // 單一訂票
-        System.out.println(
-                "總價格: " + counterStaff.bookingGeneralTicket(new BookingTicket(20220110, "蜘蛛人", "影廳A", ticketList)));
+        ArrayList<String> movieList = new ArrayList<>(List.of("蜘蛛人","駭客任務"));
+        
+        BookingTicket spiderMan = new BookingTicket();
+        BookingTicket theMatrix = new BookingTicket();
+        theMatrix.setName(movieList.get(1));
+        spiderMan.setName(movieList.get(0));
 
-        // 套票
-        System.out.println("總價格: "
-                + counterStaff.bookingTicketPackage(new BookingTicketPackage(20220110, "蜘蛛人", "影廳A", ticketList, 1)));
+        spiderMan.setSeat(seat);
+        theMatrix.setSeat(seat);
+        BookingRunnable bookingRunnable = new BookingRunnable();
+        bookingRunnable.getInfo(spiderMan,theMatrix);
+        Thread bookingTread = new Thread(bookingRunnable);
+
+        bookingTread.start();
 
     }
 }

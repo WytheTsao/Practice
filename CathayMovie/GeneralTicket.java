@@ -1,38 +1,50 @@
+import java.util.ArrayList;
+
 /**
  * 模擬寫入資料庫
  */
 
 public class GeneralTicket implements IBookingTicket {
 
-    //確認有沒有剩餘票
+    // 確認有沒有剩餘票
+
+    // 單一訂票
     @Override
-    public int checkTicket(int date, String name) {
-        int tiecketQuantity = 0;
-        // System.out.println("SELECT ticketQuantity FROM CathayMovie WHERE date = " +
-        // date + " name = "+ name);
-        return tiecketQuantity;
+    public int bookingGeneralTicket(BookingTicket bookingTicket, String session, ArrayList<Integer> tickets) {
+        int sum = 0;
+        for (int i = 0; i < tickets.size(); i++) {
+            sum += tickets.get(i);
+        }
+        System.out.println("電影：" + bookingTicket.getName() + " 影廳：" + session + " 票數：" + tickets);
+        System.out.println("--------------------------------------------");
+
+        bookingTicket.setTickies(session, bookingTicket.getQuantity(session) - sum);
+        return sum;
     }
 
-   
-    //單一訂票
+    // 訂套票
     @Override
-    public int bookingGeneralTicket(BookingTicket bookingTicket) {
-        System.out.println("訂票電影名稱：" + bookingTicket.getName() + bookingTicket.getSession() + bookingTicket.getDate()
-                + bookingTicket.getQuantity());
-        return bookingTicket.getQuantity().get(0) * 320 + bookingTicket.getQuantity().get(1) * 300
-                + bookingTicket.getQuantity().get(2) * 300 + bookingTicket.getQuantity().get(3) * 160;
-    }
-
-    //訂套票
-    @Override
-    public int bookingTicketPackage(BookingTicketPackage bookingTicketPackage) {
+    public int bookingTicketPackage(BookingTicket bookingTicket) {
 
         int ticketPrice = 0;
-        if (bookingTicketPackage.getPackageTicket() == 1){
+        if (((BookingTicketPackage) bookingTicket).getPackageTicket() == 1) {
             System.out.println("套票種類：套票類型1");
             ticketPrice = 299;
         }
         return ticketPrice;
+    }
+
+    @Override
+    public boolean checkTicket(BookingTicket bookingTicket, String movieName, String session) {
+
+        if (bookingTicket.getQuantity(session) < 0) {
+            System.out.println("沒票了");
+            return false;
+        } else {
+            System.out.println(
+                    "電影名稱: " + movieName + " 電影影廳: " + session + " 剩餘票數: " + bookingTicket.getQuantity(session));
+        }
+        return true;
     }
 
 }

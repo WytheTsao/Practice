@@ -1,32 +1,38 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
- * 定義Counter Staff類別
+ * 電影種類
  */
 
 public class BookingTicket {
-    private int date;
     private String name;
-    private String session;
+    private ArrayList<String> session;
     private ArrayList<Integer> quantity;
+    private HashMap<String, Integer> seat;
 
-    public BookingTicket(int date, String name, String session, ArrayList<Integer> quantity) {
-        this.date = date;
+    public void setSeat(HashMap<String, Integer> seat) {
+        this.seat = seat;
+    }
+    
+    public void setName(String name) {
         this.name = name;
-        this.session = session;
-        this.quantity = quantity;
     }
 
-    public String getSession() {
+    public void setSession(ArrayList<String> session) {
+        this.session = session;
+    }
+
+    public void setTickies(String session,int tickets){
+        this.seat.put(session, tickets);
+    }
+
+    public ArrayList<String> getSession() {
         return session;
     }
 
-    public ArrayList<Integer> getQuantity() {
-        return quantity;
-    }
-
-    public int getDate() {
-        return date;
+    public int getQuantity(String session) {
+        return this.seat.get(session);
     }
 
     public String getName() {

@@ -1,7 +1,9 @@
-public interface IBookingTicket {
-    int checkTicket(int date, String movieName);
+import java.util.ArrayList;
 
-    int bookingGeneralTicket(BookingTicket bookingTicket);
+public interface IBookingTicket {
+    boolean checkTicket(BookingTicket bookingTicket, String movieName, String session);
+
+    int bookingGeneralTicket(BookingTicket bookingTicket, String session, ArrayList<Integer> tickets);
 
     int bookingTicketPackage(BookingTicket bookingTicket);
 
