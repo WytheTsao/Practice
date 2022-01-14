@@ -10,15 +10,33 @@ public class GeneralTicket implements IBookingTicket {
 
     // 單一訂票
     @Override
-    public int bookingGeneralTicket(BookingTicket bookingTicket, String session, ArrayList<Integer> tickets) {
+    public int bookingGeneralTicket(ArrayList<BookingTicket> bookingTicket, String name, String session,
+            ArrayList<Integer> tickets) {
         int sum = 0;
-        for (int i = 0; i < tickets.size(); i++) {
-            sum += tickets.get(i);
-        }
-        System.out.println("電影：" + bookingTicket.getName() + " 影廳：" + session + " 票數：" + tickets);
-        System.out.println("--------------------------------------------");
 
-        bookingTicket.setTickies(session, bookingTicket.getQuantity(session) - sum);
+        for (int i = 0; i < bookingTicket.size(); i++) {
+            if (bookingTicket.get(i).getName().equals(name)) {
+                for (int j = 0; j < tickets.size(); j++) {
+                    sum += tickets.get(j);
+                }
+                System.out.println("電影：" + name + " 影廳：" + session + "票數：" + tickets);
+                System.out.println("--------------------------------------------");
+
+                bookingTicket.get(i).setTickies(session, bookingTicket.get(i).getQuantity(session) - sum);
+            }
+        }
+
+        // for (int i = 0; bookingTicket.get(i).getName().equals(name); i++) {
+        // for (int j = 0; j < tickets.size(); j++) {
+        // sum += tickets.get(j);
+        // }
+        // System.out.println("電影：" + name + " 影廳：" + session + "票數：" + tickets);
+        // System.out.println("--------------------------------------------");
+
+        // bookingTicket.get(i).setTickies(session,
+        // bookingTicket.get(i).getQuantity(session) - sum);
+        // }
+
         return sum;
     }
 
@@ -35,15 +53,39 @@ public class GeneralTicket implements IBookingTicket {
     }
 
     @Override
-    public boolean checkTicket(BookingTicket bookingTicket, String movieName, String session) {
-
-        if (bookingTicket.getQuantity(session) < 0) {
-            System.out.println("沒票了");
-            return false;
-        } else {
-            System.out.println(
-                    "電影名稱: " + movieName + " 電影影廳: " + session + " 剩餘票數: " + bookingTicket.getQuantity(session));
+    public boolean checkTicket(ArrayList<BookingTicket> bookingTicket, String movieName, String session) {
+        for (int i = 0; i < bookingTicket.size(); i++) {
+            if (bookingTicket.get(i).getName().equals(movieName)) {
+                if (bookingTicket.get(i).getQuantity(session) < 0) {
+                    System.out.println("沒票了");
+                    return false;
+                } else {
+                    System.out.println(
+                            "電影名稱: " + movieName + " 電影影廳: " + session + " 剩餘票數: " +
+                                    bookingTicket.get(i).getQuantity(session));
+                }
+            }
         }
+        // for (int i =0; bookingTicket.get(i).getName().equals(movieName); i++) {
+        // if (bookingTicket.get(i).getQuantity(session) < 0) {
+        // System.out.println("沒票了");
+        // return false;
+        // } else {
+        // System.out.println(
+        // "電影名稱: " + movieName + " 電影影廳: " + session + " 剩餘票數: " +
+        // bookingTicket.get(i).getQuantity(session));
+        // }
+
+        // }
+        // if (bookingTicket.getQuantity(session) < 0) {
+        // System.out.println("沒票了");
+        // return false;
+        // }
+        // else {
+        // System.out.println(
+        // "電影名稱: " + movieName + " 電影影廳: " + session + " 剩餘票數: " +
+        // bookingTicket.getQuantity(session));
+        // }
         return true;
     }
 

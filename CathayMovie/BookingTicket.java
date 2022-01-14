@@ -8,13 +8,12 @@ import java.util.HashMap;
 public class BookingTicket {
     private String name;
     private ArrayList<String> session;
-    private ArrayList<Integer> quantity;
     private HashMap<String, Integer> seat;
 
     public void setSeat(HashMap<String, Integer> seat) {
         this.seat = seat;
     }
-    
+
     public void setName(String name) {
         this.name = name;
     }

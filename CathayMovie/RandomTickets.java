@@ -15,7 +15,7 @@ public class RandomTickets implements IRandomTickets {
         }
         sessionNumber = (int) (Math.random() * 3);
         movieNumber = (int) (Math.random() * 2);
-        
+
         switch (sessionNumber) {
             case 0:
                 tickets.setSession("影廳A");
